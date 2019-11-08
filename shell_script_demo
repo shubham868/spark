@@ -10,5 +10,9 @@ cd data/retail_db/orders
 
 awk -F"," '{print $1}' part-00000 |head
 awk -F"," '{print $0}' part-00000 |head  //gives all the fields
-awk -F"," '{print $NF}' part-00000|head  //give the last fields
+awk -F"," '{print NF}' part-00000|head  //give the number of fields in each records
+awk -F"," '{print $NF}' part-00000|head //give the last fiedl of records
+awk -F"," '{if(NF > 4) {print $0}} part-00000|head  //gives all the recods having more than 4 feilds
+
+
 
