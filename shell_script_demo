@@ -1,0 +1,14 @@
+
+sed -e 's/COMPLETE/COMPLETED/g' data/retail_db/orders/part-00000|head
+sed -e 's/2013-07-25/2013-06-25/g' data/retail_db/orders/part-00000|head
+sed -i 's/COMPLETE/COMPLETED/g' data/retail_db/orders/part-00000
+
+cut -d, f1 data/retail_db/orders/part-00000|head
+cut -d, f1,2,3 data/retail_db/orders/part-00000|head
+
+cd data/retail_db/orders
+
+awk -F"," '{print $1}' part-00000 |head
+awk -F"," '{print $0}' part-00000 |head  //gives all the fields
+awk -F"," '{print $NF}' part-00000|head  //give the last fields
+
