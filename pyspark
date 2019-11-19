@@ -5,4 +5,18 @@ def my_map(c,f):
  for i in c:
   l.append(f(i))
  return l
+##################################################################################################################
+
+orderItems = sc.textFile("/user/shubham868/data/retail_db/order_items")
+for i in orderItems.take(10): print(i)
+
+#maximum revenue generated for a givin orderId
+
+orderItems = sc.textFile("/user/shubham868/data/retail_db/order_items")
+orderItemsFilter = orderItems.filter(lambda oi:int(oi.split(",")[1] == 2))
+orderItemsMaxRevenue = orderItemsFilter.reduce(lambda max,val:float(oi.split(",")[4]) > float(oi.split(",")[4]))
+print(orderItemsMaxRevenue)
+
+####################################################################################################################
+
 
