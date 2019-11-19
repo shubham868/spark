@@ -19,4 +19,29 @@ print(orderItemsMaxRevenue)
 
 ####################################################################################################################
 
+# get revenue for each order_id
+
+orderItems = sc.textFile("/user/shubham868/data/retail_db/order_items")
+orderItemsMap = orderItems.map(lambda oi:(int(oi.split(",")[1])),float(oi.split(",")[4]))
+orderItemsReduce = orderItemsMap.reduce(lambda a,b: a+b)
+for i in orderItemsReduce.take(10):print(i)
+
+or(groupByKey)
+
+orderItems = sc.textFile("/user/shubham868/data/retail_db/order_items")
+orderItemMap = orderItems.map(lambda oi:(int(oi.split(",")[1]),float(oi.split(",")[4])))
+orderItemGroupByKey = orderItemMap.groupByKey()
+orderItemRevenue = orderItemGroupByKey.map(lambda tup:(tup[0],sum(tup[1])))
+for i in orderItemRevenue.take(10):print(i)
+
+or (reduceByKey)
+
+orderItems = sc.textFile("/user/shubham868/data/retail_db/order_items")
+orderItemsMap = orderItems.map(lambda oi:(int(oi.split(",")[1]),oi))
+orderItemsReduceByKey = orderItemsMap.reduce(lambda a,b: float(a.split(",")[3]) + float(b.split(",")[3]))
+for i in orderItemsReduceByKey.take(10):print(i)
+
+####################################################################################################################
+
+
 
