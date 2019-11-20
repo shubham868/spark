@@ -43,5 +43,13 @@ for i in orderItemsReduceByKey.take(10):print(i)
 
 ####################################################################################################################
 
+ #counting hashtags
+
+ data = sc.textFile("/home/shubham/project_ITVV/Twitter-Analysis-master/Database/result_data/hive/warehouse/tweets_entities_hashtags/000000_0")
+ twitte = data.map(lambda x:(x.split(",")[1],1))
+ twitteCount = twitte.reduceByKey(lambda a,b: a+b)
+ for i in twitte.take(10): print(i)
+ 
+
 
 
